@@ -9,15 +9,15 @@ return {
       default_component_configs = {
         git_status = {
           symbols = {
-            added     = '',  -- plus (cross shape)
-            modified  = '',  -- wrench (edit tool)
-            deleted   = '',  -- trash can
-            renamed   = '',  -- right arrow
-            untracked = '',  -- question mark in circle
-            ignored   = '',  -- toggle off
-            unstaged  = '',  -- warning sign (triangle)
-            staged    = '',  -- checkmark
-            conflict  = '',  -- conflict (Git branch symbol)
+            added     = '',
+            modified  = '',
+            deleted   = '',
+            renamed   = '',
+            untracked = '',
+            ignored   = '',
+            unstaged  = '',
+            staged    = '',
+            conflict  = '',
           }
         },
         modified = {

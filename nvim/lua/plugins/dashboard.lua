@@ -59,7 +59,7 @@ return {
             icon = '  ',
             desc = 'Config             ',
             key = 'c',
-            action = 'e ~/.config/nvim'
+            action = 'e ~/.dotfiles/nvim'
           },
           {
             icon = '  ',
