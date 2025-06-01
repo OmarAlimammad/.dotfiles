@@ -29,9 +29,6 @@ return {
     end
   },
   {
-    'stevearc/dressing.nvim',
-  },
-  {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup({
