@@ -27,6 +27,8 @@ return {
         },
       })
     end
+  },
+  {
+    'stevearc/dressing.nvim',
   }
-
 }
