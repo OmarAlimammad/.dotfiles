@@ -13,19 +13,11 @@ return {
   {
     'neovim/nvim-lspconfig',
     config = function()
-      vim.lsp.handlers['textDocument/signatureHelp'] =
-      vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = 'rounded',
-      })
-
       local lspconfig = require('lspconfig')
 
       lspconfig.lua_ls.setup({})
       lspconfig.pyright.setup({})
       lspconfig.clangd.setup({
-        handlers = {
-
-        },
         cmd = { 'clangd', '--header-insertion=never', '--function-arg-placeholders=false' }
       })
 
@@ -69,5 +61,5 @@ return {
         return orig_util(contents, syntax, opts, ...)
       end
     end
-  },
+  }
 }

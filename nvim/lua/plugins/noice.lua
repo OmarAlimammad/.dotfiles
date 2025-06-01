@@ -2,6 +2,11 @@ return {
   'folke/noice.nvim',
   config = function()
     require('noice').setup({
+      lsp = {
+        signature = {
+          enabled = false,
+        },
+      },
       cmdline = {
         enabled = true,
         view = 'cmdline_popup'
