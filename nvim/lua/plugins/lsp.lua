@@ -18,7 +18,7 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.pyright.setup({})
       lspconfig.clangd.setup({
-        cmd = { 'clangd', '--header-insertion=never', '--function-arg-placeholders=false' }
+        cmd = { 'clangd', '--function-arg-placeholders=false' }
       })
 
       vim.diagnostic.config({
@@ -31,8 +31,7 @@ return {
               [vim.diagnostic.severity.INFO]  = ' ',
               [vim.diagnostic.severity.HINT]  = ' ',
             }
-            local msg = diagnostic.message:gsub('\n', ' '):gsub('\r', '')
-            return icons[diagnostic.severity] .. msg
+            return icons[diagnostic.severity] .. diagnostic.message
           end,
         },
         float = {

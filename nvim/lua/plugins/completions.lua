@@ -9,12 +9,11 @@ return {
       ls.add_snippets('cpp', {
         s('cd', {
           t({
-            '#include <bits/stdc++.h>',
-            'using namespace std;',
+            '#include <iostream>',
             '',
             'signed main() {',
-            '\tios::sync_with_stdio(0);',
-            '\tcin.tie(nullptr);',
+            '\tstd::ios::sync_with_stdio(0);',
+            '\tstd::cin.tie(nullptr);',
             '\t',
             '}'
           }),

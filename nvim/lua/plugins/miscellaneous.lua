@@ -22,8 +22,8 @@ return {
           normal = '<leader>s',
           normal_cur = '<leader>ss',
           visual = '<leader>s',
-          delete = '<leader>ds',
-          change = '<leader>cs',
+          delete = '<leader>sd',
+          change = '<leader>sc',
         },
       })
     end
