@@ -1,18 +1,26 @@
 return {
   {
-    'williamboman/mason.nvim',
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'ray-x/lsp_signature.nvim',
+    },
     config = function()
       require('mason').setup({
         ui = {
-          border = 'rounded'
-        }
+          border = 'rounded',
+        },
       })
 
-    end
-  },
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
+      require('lsp_signature').setup({
+        bind = true,
+        handler_opts = {
+          border = 'rounded',
+        },
+        floating_window = true,
+        hint_enable = false,
+      })
+
       local lspconfig = require('lspconfig')
 
       lspconfig.lua_ls.setup({})
@@ -60,19 +68,5 @@ return {
         return orig_util(contents, syntax, opts, ...)
       end
     end
-  },
-  {
-    'ray-x/lsp_signature.nvim',
-    config = function()
-      require('lsp_signature').setup({
-        bind = true,
-        handler_opts = {
-          border = 'rounded',
-        },
-        floating_window = true,
-        hint_enable = false,
-      })
-    end,
   }
-
 }

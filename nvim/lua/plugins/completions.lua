@@ -1,14 +1,23 @@
 return {
   {
-    'L3MON4D3/LuaSnip',
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip',
+      'windwp/nvim-autopairs',
+    },
     config = function()
-      local ls = require('luasnip')
-      local s = ls.snippet
-      local t = ls.text_node
+      require('nvim-autopairs').setup({})
 
-      ls.add_snippets('cpp', {
-        s('cd', {
-          t({
+      local luasnip = require('luasnip')
+      local snippet = luasnip.snippet
+      local text = luasnip.text_node
+
+      luasnip.add_snippets('cpp', {
+        snippet('cd', {
+          text({
             '#include <bits/stdc++.h>',
             'using namespace std;',
             '',
@@ -20,16 +29,7 @@ return {
           }),
         }),
       })
-    end
-  },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip'
-    },
-    config = function()
+
       local cmp = require('cmp')
       cmp.setup({
         window = {
@@ -54,12 +54,6 @@ return {
         }),
       })
     end
-  },
-
-  {
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup({})
-    end
   }
 }
+
