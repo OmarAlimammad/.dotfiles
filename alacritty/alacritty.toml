@@ -15,6 +15,7 @@ opacity = 0.85
 startup_mode = "Maximized"
 dynamic_title = false
 title = ""
+decorations = "none"
 padding = { x = 5, y = 0 }
 
 [cursor.style]
