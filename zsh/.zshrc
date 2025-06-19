@@ -46,5 +46,4 @@ alias py="python"
 alias ls="eza --icons"
 alias neofetch="neowofetch"
 
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
