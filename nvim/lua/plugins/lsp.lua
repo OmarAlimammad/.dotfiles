@@ -1,23 +1,11 @@
 return {
   'neovim/nvim-lspconfig',
-  dependencies = {
-    'williamboman/mason.nvim',
-    'ray-x/lsp_signature.nvim',
-  },
+  dependencies = { 'williamboman/mason.nvim' },
   config = function()
     require('mason').setup({
       ui = {
         border = 'rounded',
       },
-    })
-
-    require('lsp_signature').setup({
-      bind = true,
-      handler_opts = {
-        border = 'rounded',
-      },
-      floating_window = true,
-      hint_enable = false,
     })
 
     local lspconfig = require('lspconfig')
@@ -33,10 +21,10 @@ return {
         prefix = '',
         format = function(diagnostic)
           local icons = {
-            [vim.diagnostic.severity.ERROR] = ' ',
-            [vim.diagnostic.severity.WARN]  = ' ',
-            [vim.diagnostic.severity.INFO]  = ' ',
-            [vim.diagnostic.severity.HINT]  = ' ',
+            [vim.diagnostic.severity.ERROR] = '  ',
+            [vim.diagnostic.severity.WARN]  = '  ',
+            [vim.diagnostic.severity.INFO]  = '  ',
+            [vim.diagnostic.severity.HINT]  = '  ',
           }
           return icons[diagnostic.severity] .. diagnostic.message
         end,
@@ -49,10 +37,10 @@ return {
       },
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = '',
-          [vim.diagnostic.severity.WARN]  = '',
-          [vim.diagnostic.severity.INFO]  = '',
-          [vim.diagnostic.severity.HINT]  = '',
+          [vim.diagnostic.severity.ERROR] = ' ',
+          [vim.diagnostic.severity.WARN]  = ' ',
+          [vim.diagnostic.severity.INFO]  = ' ',
+          [vim.diagnostic.severity.HINT]  = ' ',
         },
       },
       severity_sort = true,

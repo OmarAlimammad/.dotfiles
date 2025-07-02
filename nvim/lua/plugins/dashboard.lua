@@ -68,7 +68,10 @@ return {
             action = 'qa'
           }
         },
-        footer = {}
+        footer = {
+            '',
+            'Don\'t code without getting the full solution!'
+        }
       },
     })
   end

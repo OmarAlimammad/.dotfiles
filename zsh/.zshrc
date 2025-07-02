@@ -1,9 +1,9 @@
 export PATH="$HOME/.cargo/bin:$PATH"
-
 export EDITOR=nvim
 export VISUAL=nvim
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
     if tmux has-session 2>/dev/null; then
@@ -13,7 +13,7 @@ if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
     fi
 fi
 
-run() {
+function run() {
     if [[ -z "$1" ]]; then
         return 1
     fi
@@ -31,12 +31,20 @@ run() {
     ./"$bin"
 }
 
-minecraft() {
+function minecraft() {
     __NV_PRIME_RENDER_OFFLOAD=1 \
     __GLX_VENDOR_LIBRARY_NAME=nvidia \
     __VK_LAYER_NV_optimus=NVIDIA_only \
     DRI_PRIME=1 \
     java -jar ~/.minecraft.jar
+}
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
 }
 
 alias tm="tmux"

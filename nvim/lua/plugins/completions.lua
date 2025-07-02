@@ -23,6 +23,7 @@ return {
           'signed main() {',
           '\tios::sync_with_stdio(0);',
           '\tcin.tie(nullptr);',
+          '\t/// ??why?? ///',
           '\t',
           '}'
         }),
