@@ -3,6 +3,19 @@ return {
     'christoomey/vim-tmux-navigator'
   },
   {
+    'nvim-treesitter/nvim-treesitter',
+    run = 'TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        }
+      })
+    end
+  },
+  {
     'karb94/neoscroll.nvim',
     config = function()
       require('neoscroll').setup({

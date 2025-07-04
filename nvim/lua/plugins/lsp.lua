@@ -11,6 +11,7 @@ return {
     local lspconfig = require('lspconfig')
 
     lspconfig.lua_ls.setup({})
+    lspconfig.tsserver.setup({})
     lspconfig.pyright.setup({})
     lspconfig.clangd.setup({
       cmd = { 'clangd', '--header-insertion=never', '--function-arg-placeholders=false' }
