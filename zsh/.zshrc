@@ -2,8 +2,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+ZSH_THEME=robbyrussell
 
 if command -v tmux >/dev/null && [ -z "$TMUX" ]; then
     if tmux has-session 2>/dev/null; then
@@ -46,4 +47,4 @@ alias py="python"
 alias ls="eza --icons"
 alias neofetch="neowofetch"
 
-source ~/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh/oh-my-zsh/oh-my-zsh.sh
