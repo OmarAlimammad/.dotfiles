@@ -1,37 +1,37 @@
-# version: 1.0.0
-
-add_newline = true
-continuation_prompt = "[▸▹ ](dimmed white)"
-
 format = """
-$directory\
 $character\
 """
 
 right_format = """
+$git_branch\
 $git_status\
 """
 
 [character]
 format = "$symbol "
-success_symbol = "[➜](yellow)"
-error_symbol = "[➜](red)"
-vimcmd_symbol = "[➜](dimmed green)"
+success_symbol = "[ ➜](bright-yellow)"
+error_symbol = "[ ➜](red)"
+vimcmd_symbol = "[ ➜](dimmed green)"
 
 [directory]
-truncation_length = 2
+truncation_length = 1
 style = "cyan"
-format = '[ $path ]($style)'
+format = '[$path ]($style)'
+
+[git_branch]
+format = " [$branch]($style)"
+style = "italic blue"
+only_attached = true
 
 [git_status]
-format = "[$deleted$ahead$behind$staged$modified$untracked$renamed$conflicted](bold)"
-ahead = " [⇡(bold white)](green)"
-behind = " [⇣(bold white)](red)"
-diverged = " [⇕⇡[$ahead_count](white)⇣[$behind_count](white)](magenta)"
-conflicted = " [](magenta)"
-staged = " [(bold white)](cyan)"
+style = "bold italic bright-blue"
+format = "[$deleted$ahead$behind$staged$modified$untracked$renamed$conflicted ]($style)"
+ahead = " [⇡](green)"
+behind = " [⇣](red)"
+diverged = " [⇕⇡⇣](bright-magenta)"
+conflicted = " [](bright-magenta)"
+staged = " [](bright-cyan)"
 modified = " [](yellow)"
-untracked = " [](purple)"
-renamed = " [](blue)"
+untracked = " [](bright-purple)"
+renamed = " [](bright-blue)"
 deleted = " [](red)"
-

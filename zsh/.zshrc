@@ -39,6 +39,7 @@ function minecraft() {
     java -jar ~/.minecraft.jar
 }
 
+alias wd="pwd"
 alias tm="tmux"
 alias nv="nvim"
 alias cl="clear"
