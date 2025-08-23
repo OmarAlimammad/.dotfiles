@@ -5,8 +5,18 @@ return {
     { "williamboman/mason.nvim", name = "mason" }
   },
   config = function()
-    require("mason").setup()
+    require("mason").setup({
+      ui = {
+        border = "rounded",
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      }
+    })
 
+    require("lspconfig").yamlls.setup({})
     require("lspconfig").lua_ls.setup({})
     require("lspconfig").pyright.setup({})
     require("lspconfig").clangd.setup({

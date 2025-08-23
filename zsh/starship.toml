@@ -1,11 +1,16 @@
 format = """
+$directory\
 $character\
 """
 
 right_format = """
+$python\
 $git_branch\
 $git_status\
 """
+
+[python]
+format = "[⌉](bold bright-blue)[⌊](bold bright-yellow) "
 
 [character]
 format = "$symbol "
@@ -14,9 +19,7 @@ error_symbol = "[ ➜](red)"
 vimcmd_symbol = "[ ➜](dimmed green)"
 
 [directory]
-truncation_length = 1
-style = "cyan"
-format = '[$path ]($style)'
+format = "[$path](italic cyan)"
 
 [git_branch]
 format = " [$branch]($style)"
