@@ -31,9 +31,9 @@ return {
       snippet("db", {
         text({
           "#ifdef LOCAL",
-          "#include \"debug.h\"",
+          "#include \"algo/debug\"",
           "#else",
-          "#define dbg(...) 42",
+          "#define dbg(...)",
           "#endif",
         }),
       }),

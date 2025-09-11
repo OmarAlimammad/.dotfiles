@@ -13,5 +13,7 @@ return {
       }
     })
     require("telescope").load_extension("ui-select")
+
+    vim.keymap.set("n", "<leader>t", ":Telescope<CR>", { silent = true })
   end
 }

@@ -4,13 +4,9 @@ $character\
 """
 
 right_format = """
-$python\
 $git_branch\
 $git_status\
 """
-
-[python]
-format = "[⌉](bold bright-blue)[⌊](bold bright-yellow) "
 
 [character]
 format = "$symbol "

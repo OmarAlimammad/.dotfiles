@@ -69,7 +69,11 @@ return {
             action = "qa"
           }
         },
-        footer = {}
+        footer = function()
+          local stats = require("lazy").stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          return { "", "󰒲 Laziness: " .. ms .. " ms" }
+        end,
       },
     })
   end

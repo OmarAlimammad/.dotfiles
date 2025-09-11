@@ -2,9 +2,18 @@ return {
   "neovim/nvim-lspconfig",
   name = "lspconfig",
   dependencies = {
-    { "williamboman/mason.nvim", name = "mason" }
+    { "williamboman/mason.nvim",         name = "mason" },
+    { "nvim-treesitter/nvim-treesitter", name = "treesitter" },
   },
   config = function()
+    require("nvim-treesitter.configs").setup({
+      auto_install = true,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      }
+    })
+
     require("mason").setup({
       ui = {
         border = "rounded",
@@ -16,6 +25,7 @@ return {
       }
     })
 
+    require("lspconfig").bashls.setup({})
     require("lspconfig").yamlls.setup({})
     require("lspconfig").lua_ls.setup({})
     require("lspconfig").pyright.setup({})
@@ -61,5 +71,12 @@ return {
       opts.border = opts.border or "rounded"
       return orig_util(contents, syntax, opts, ...)
     end
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { silent = true })
+    vim.keymap.set("n", "<leader>k", vim.lsp.buf.format, { silent = true })
+    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { silent = true })
+    vim.keymap.set("n", "<leader>g", vim.lsp.buf.definition, { silent = true })
+    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { silent = true })
+    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { silent = true })
   end
 }
