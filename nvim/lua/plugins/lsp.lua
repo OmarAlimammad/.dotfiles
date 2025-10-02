@@ -25,11 +25,14 @@ return {
       }
     })
 
-    require("lspconfig").bashls.setup({})
-    require("lspconfig").yamlls.setup({})
-    require("lspconfig").lua_ls.setup({})
-    require("lspconfig").pyright.setup({})
-    require("lspconfig").clangd.setup({
+    vim.lsp.enable("jdtls")
+    vim.lsp.enable("bashls")
+    vim.lsp.enable("yamlls")
+    vim.lsp.enable("lua_ls")
+    vim.lsp.enable("pyright")
+    vim.lsp.enable("clangd")
+
+    vim.lsp.config("clangd", {
       cmd = { "clangd", "--header-insertion=never", "--function-arg-placeholders=false" }
     })
 

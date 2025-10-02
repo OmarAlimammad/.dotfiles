@@ -23,17 +23,8 @@ if command -v tm >/dev/null && [ -z "$TMUX" ]; then
 fi
 
 function go() {
-  z desktop 2> /dev/null
-  nv a.cpp
-}
-
-function clear_() {
-  local files=("algo/io/in" "algo/io/out1" "algo/io/out2" "algo/io/bugs")
-
-  for f in "${files[@]}"; do
-    rm "$f" 2> /dev/null
-    touch "$f" 2> /dev/null
-  done
+  z cp 2> /dev/null
+  nv "a.cpp"
 }
 
 function build() {
@@ -67,10 +58,9 @@ function run() {
     return 1
   fi
 
-  clear_
-
-  local bin="algo/bin/main"
   local bugs="algo/io/bugs"
+  local bin="algo/bin/main"
+
   local sources=()
 
   for arg in "$@"; do
@@ -80,7 +70,8 @@ function run() {
   build "$bin" "${sources[@]}" || return 1
   ./"$bin" 2> "$bugs"
 
-  see
+  echo
+  cat "$bugs"
 }
 
 function stress() {
@@ -109,7 +100,6 @@ function stress() {
   local ok=1
 
   while (( tc < max_tc )); do
-    clear_
 
     (( tc++ ))
     
@@ -122,7 +112,6 @@ function stress() {
       else
         echo "RE"
       fi
-      see
       ok=0
       break
     fi
@@ -131,7 +120,6 @@ function stress() {
     
     if ! diff -w -q "$out1" "$out2" >/dev/null; then
       echo "WA"
-      see
       ok=0
       break
     fi
@@ -140,25 +128,6 @@ function stress() {
   if [[ $ok -eq 1 ]]; then
     echo "OK"
   fi
-}
-
-function see() {
-
-  function print_() {
-    local label="$1"
-    local file="$2"
-    if [[ -s "$file" ]]; then
-      echo "$label"
-      cat "$file"
-      echo
-    fi
-  }
-
-  echo
-  print_ "Input:" "algo/io/in"
-  print_ "Output:" "algo/io/out1"
-  print_ "Expected:" "algo/io/out2"
-  print_ "Bugs:" "algo/io/bugs"
 }
 
 source ~/.dotfiles/zsh/highlighting/a.plugin.zsh

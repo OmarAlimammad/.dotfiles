@@ -13,4 +13,11 @@ vim.opt.signcolumn = "no"
 vim.opt.laststatus = 0
 vim.opt.statusline = ""
 
-vim.opt.fillchars:append({ eob = " " })
+vim.opt.foldmethod = "manual"
+vim.opt.foldtext = [[v:lua.FoldText()]]
+
+function _G.FoldText()
+    return vim.fn.getline(vim.v.foldstart) .. " ..."
+end
+
+vim.opt.fillchars:append({ eob = " ", fold = " " })
