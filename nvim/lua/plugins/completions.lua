@@ -21,22 +21,39 @@ return {
           "#include <bits/stdc++.h>",
           "using namespace std;",
           "",
-          "signed main() {",
-          "\tios::sync_with_stdio(0);",
-          "\tcin.tie(nullptr);",
-          "\t",
-          "}"
-        }),
-      }),
-      snippet("db", {
-        text({
           "#ifdef LOCAL",
           "#include \"algo/debug\"",
           "#else",
           "#define dbg(...)",
           "#endif",
+          "",
+          "void solve() {",
+          "\t",
+          "}",
+          "",
+          "void precomp() {}",
+          "",
+          "signed main() {",
+          "\tios::sync_with_stdio(0);",
+          "\tcin.tie(nullptr);",
+          "\tprecomp();",
+          "\tint t = 1;",
+          "\tcin >> t;",
+          "\twhile (t--) {",
+          "\t\tsolve();",
+          "\t}",
+          "}",
         }),
       }),
+      -- snippet("db", {
+      --   text({
+      --     "#ifdef LOCAL",
+      --     "#include \"algo/debug\"",
+      --     "#else",
+      --     "#define dbg(...)",
+      --     "#endif",
+      --   }),
+      -- }),
     })
 
     local cmp = require("cmp")
