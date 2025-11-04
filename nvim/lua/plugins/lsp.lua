@@ -3,6 +3,7 @@ return {
   name = "lspconfig",
   dependencies = {
     { "williamboman/mason.nvim",         name = "mason" },
+    { "nvimtools/none-ls.nvim",          name = "null_ls" },
     { "nvim-treesitter/nvim-treesitter", name = "treesitter" },
   },
   config = function()
@@ -25,6 +26,18 @@ return {
       }
     })
 
+    local null_ls = require("null-ls")
+
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.isort,
+        null_ls.builtins.formatting.yapf.with({
+          extra_args = { "--style={based_on_style: pep8, indent_width: 2}" }
+        })
+      }
+    })
+
+    vim.lsp.enable("ts_ls")
     vim.lsp.enable("jdtls")
     vim.lsp.enable("bashls")
     vim.lsp.enable("yamlls")

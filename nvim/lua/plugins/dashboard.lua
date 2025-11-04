@@ -58,9 +58,9 @@ return {
           },
           {
             icon = "  ",
-            desc = "Config             ",
+            desc = "Dotfiles           ",
             key = "c",
-            action = "e ~/.dotfiles/nvim"
+            action = "e ~/.dotfiles"
           },
           {
             icon = "  ",
