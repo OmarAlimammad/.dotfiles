@@ -9,6 +9,7 @@
   "dashboard": { "branch": "master", "commit": "0775e567b6c0be96d01a61795f7b64c1758262f6" },
   "icons": { "branch": "master", "commit": "b8221e42cf7287c4dcde81f232f58d7b947c210d" },
   "lazy.nvim": { "branch": "main", "commit": "db067881fff0fd4be8c00e5bde7492e0e1c77a2f" },
+  "love2d": { "branch": "main", "commit": "25715394680590f56aab90390d430cab0dc46808" },
   "lspconfig": { "branch": "master", "commit": "ececa531ecae813422697b5ef627a11cc964c2a7" },
   "luasnip": { "branch": "master", "commit": "ccf25a5452b8697a823de3e5ecda63ed3d723b79" },
   "mason": { "branch": "main", "commit": "ad7146aa61dcaeb54fa900144d768f040090bff0" },

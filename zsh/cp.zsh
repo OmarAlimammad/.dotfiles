@@ -1,3 +1,4 @@
+# in() - feed input to algo/in
 function in() {
   if [[ -d "algo" ]]; then
     cat > "algo/in"
@@ -6,13 +7,12 @@ function in() {
   fi
 }
 
-function go() {
-  cd ~/Desktop/cp || { echo "Directory not found"; return 1 }
-  cp algo/template a.cpp || { echo "Template missing"; return 1 }
-  nv a.cpp
-}
+# global variable to track last-used flag
+LAST_FLAG=""
 
+# build() - compile sources into binary with flag
 function build() {
+  local flag="$1"; shift
   local bin="$1"; shift
   local sources=()
 
@@ -23,19 +23,29 @@ function build() {
   done
 
   local need_build=0
-  if [[ ! -f "$bin" ]]; then
-    need_build=1
-  else
+
+  # rebuild if binary doesn't exist
+  [[ ! -f "$bin" ]] && need_build=1
+
+  # rebuild if any source is newer
+  if [[ $need_build -eq 0 ]]; then
     for src in "${sources[@]}"; do
       [[ "$src" -nt "$bin" ]] && { need_build=1; break; }
     done
   fi
 
+  # rebuild if flag changed
+  if [[ $need_build -eq 0 ]]; then
+    [[ "$LAST_FLAG" != "$flag" ]] && need_build=1
+  fi
+
   if (( need_build )); then
-    g++ -O2 "${sources[@]}" -o "$bin" || return 1
+    g++ "$flag" "${sources[@]}" -o "$bin" || return 1
+    LAST_FLAG="$flag"
   fi
 }
 
+# run() - compile and run program with optional flags
 function run() {
   [[ $# -eq 0 ]] && return 1
 
@@ -59,19 +69,27 @@ function run() {
 
   [[ ${#sources[@]} -gt 0 ]] || { echo "No source files provided"; return 1; }
 
-    local errfile
-    errfile=$(mktemp)
+  local errfile
+  errfile=$(mktemp)
 
-    build "$bin" "${sources[@]}" || { rm -f "$errfile"; return 1; }
+  # choose flag: -DLOCAL if show_err, else -O2
+  local flag
+  if (( show_err )); then
+    flag="-DLOCAL"
+  else
+    flag="-O2"
+  fi
 
-    "./$bin" < "$input" 2> "$errfile"
+  build "$flag" "$bin" "${sources[@]}" || { rm -f "$errfile"; return 1; }
 
-    echo
+  "./$bin" < "$input" 2> "$errfile"
 
-    if (( show_err )) && [[ -s "$errfile" ]]; then
-      cat "$errfile"
-    fi
+  echo
 
-    rm -f "$errfile"
-  }
+  if (( show_err )) && [[ -s "$errfile" ]]; then
+    cat "$errfile"
+  fi
+
+  rm -f "$errfile"
+}
 

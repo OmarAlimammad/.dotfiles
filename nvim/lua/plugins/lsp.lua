@@ -3,6 +3,7 @@ return {
   name = "lspconfig",
   dependencies = {
     { "williamboman/mason.nvim",         name = "mason" },
+    { "S1M0N38/love2d.nvim",             name = "love2d" },
     { "nvimtools/none-ls.nvim",          name = "null_ls" },
     { "nvim-treesitter/nvim-treesitter", name = "treesitter" },
   },
@@ -36,6 +37,8 @@ return {
         })
       }
     })
+
+    require("love2d").setup({})
 
     vim.lsp.enable("ts_ls")
     vim.lsp.enable("jdtls")
