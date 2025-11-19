@@ -1,16 +1,12 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "rose-pine/neovim",
+  name = "rose-pine",
   config = function()
-    require("catppuccin").setup({
-      transparent_background = true,
-      float = {
-        transparent = true
-      },
-      integrations = {
-        noice = true
-      }
+    require("rose-pine").setup({
+      disable_background = true,
+      disable_float_background = true,
     })
-    vim.cmd("colorscheme catppuccin")
-  end
+
+    vim.cmd("colorscheme rose-pine-moon")
+  end,
 }
