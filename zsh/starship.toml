@@ -1,36 +1,46 @@
+# base = "#191724"
+# surface = "#1f1d2e"
+# overlay = "#26233a"
+# muted = "#6e6a86"
+# subtle = "#908caa"
+# text = "#e0def4"
+# love = "#eb6f92"
+# gold = "#f6c177"
+# rose = "#ebbcba"
+# pine = "#31748f"
+# foam = "#9ccfd8"
+# iris = "#c4a7e7"
+# highlight_low = "#21202e"
+# highlight_med = "#403d52"
+# highlight_high = "#524f67"
+
 format = """
 $directory\
 $character\
 """
 
 right_format = """
-$git_branch\
 $git_status\
 """
 
 [character]
 format = "$symbol "
-success_symbol = "[ ➜](bright-yellow)"
-error_symbol = "[ ➜](red)"
-vimcmd_symbol = "[ ➜](dimmed green)"
+success_symbol = "[ ](#f6c177)"
+error_symbol = "[ ✗](#f6c177)"
+vimcmd_symbol = "[ ](#f6c177)"
 
 [directory]
-format = "[$path](italic cyan)"
-
-[git_branch]
-format = " [$branch]($style)"
-style = "italic blue"
-only_attached = true
+format = "[$path](italic #ebbcba)"
 
 [git_status]
-style = "bold italic bright-blue"
+style = "bold italic"
 format = "[$deleted$ahead$behind$staged$modified$untracked$renamed$conflicted ]($style)"
-ahead = " [⇡](green)"
-behind = " [⇣](red)"
-diverged = " [⇕⇡⇣](bright-magenta)"
-conflicted = " [](bright-magenta)"
-staged = " [](bright-cyan)"
-modified = " [](yellow)"
-untracked = " [](bright-purple)"
-renamed = " [](bright-blue)"
-deleted = " [](red)"
+ahead = " [⇡](#524f67)"
+behind = " [⇣](#524f67)"
+diverged = " [⇕⇡⇣](#ebbcba)"
+conflicted = " [](#ebbcba)"
+staged = " [](#f6c177)"
+modified = " [](#9ccfd8)"
+untracked = " [](#c4a7e7)"
+renamed = " [](#31748f)"
+deleted = " [](#eb6f92)"
