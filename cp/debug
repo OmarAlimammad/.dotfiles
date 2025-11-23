@@ -82,7 +82,7 @@ template <typename T, typename... Ts> void print(const T &f, const Ts &...r) {
 
 template <typename... Ts> inline void debug(const char *n, const Ts &...v) {
   if (std::strcmp(n, "0")) {
-    std::cerr << "[*] " << n << " => ";
+    std::cerr << n << " ==> ";
     print(v...);
   }
   std::cerr << '\n';

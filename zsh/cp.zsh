@@ -84,9 +84,8 @@ function run() {
 
   "./$bin" < "$input" 2> "$errfile"
 
-  echo
-
   if (( show_err )) && [[ -s "$errfile" ]]; then
+    echo
     cat "$errfile"
   fi
 

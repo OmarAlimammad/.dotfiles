@@ -15,11 +15,11 @@
 # highlight_high = "#524f67"
 
 format = """
-$directory\
 $character\
 """
 
 right_format = """
+$directory\
 $git_status\
 """
 
@@ -30,7 +30,7 @@ error_symbol = "[ ✗](#f6c177)"
 vimcmd_symbol = "[ ](#f6c177)"
 
 [directory]
-format = "[$path](italic #ebbcba)"
+format = "[$path ](italic #ebbcba)"
 
 [git_status]
 style = "bold italic"
