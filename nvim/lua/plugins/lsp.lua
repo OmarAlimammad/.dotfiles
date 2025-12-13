@@ -31,15 +31,16 @@ return {
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.isort,
+        null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.yapf.with({
-          extra_args = { "--style={based_on_style: pep8, indent_width: 2}" }
-        })
+          extra_args = { "--style", "{indent_width: 2}" },
+        }),
       }
     })
 
     require("love2d").setup({})
 
+    vim.lsp.enable("html")
     vim.lsp.enable("ts_ls")
     vim.lsp.enable("jdtls")
     vim.lsp.enable("bashls")

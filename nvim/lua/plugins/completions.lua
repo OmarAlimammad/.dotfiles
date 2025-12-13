@@ -2,11 +2,13 @@ return {
   "hrsh7th/nvim-cmp",
   name = "cmp",
   dependencies = {
-    { "hrsh7th/cmp-nvim-lsp",     name = "cmp-lsp" },
-    { "hrsh7th/cmp-path",         name = "cmp-path" },
-    { "saadparwaiz1/cmp_luasnip", name = "cmp-luasnip" },
-    { "L3MON4D3/LuaSnip",         name = "luasnip" },
-    { "windwp/nvim-autopairs",    name = "autopairs" }
+    { "hrsh7th/cmp-nvim-lsp",         name = "cmp-lsp" },
+    { "L3MON4D3/LuaSnip",             name = "luasnip" },
+    { "rafamadriz/friendly-snippets", name = "cmp-path" },
+    { "hrsh7th/cmp-path",             name = "cmp-path" },
+    { "windwp/nvim-autopairs",        name = "autopairs" },
+    { "saadparwaiz1/cmp_luasnip",     name = "cmp-luasnip" },
+    { "rafamadriz/friendly-snippets", name = "friendly-snippets" },
   },
   config = function()
     require("nvim-autopairs").setup({})
@@ -18,37 +20,23 @@ return {
     luasnip.add_snippets("cpp", {
       snippet("cd", {
         text({
+          "#pragma GCC optimize(\"Ofast\")",
           "#include \"bits/stdc++.h\"",
+          "#define int long long",
           "using namespace std;",
           "",
-          "#ifdef LOCAL",
-          "#include \"algo/debug\"",
-          "#else",
-          "#define dbg(...)",
-          "#endif",
-          "",
-          "#define int long long",
-          "",
-          "void run() {}",
-          "",
           "signed main() {",
-          "  ios::sync_with_stdio(0);",
-          "  cin.tie(nullptr);",
-          "  int tt = 1;",
-          "  cin >> tt;",
-          "  for (int cs = 1; cs <= tt; cs++) {",
-          "#ifdef LOCAL",
-          "    cout << \"\\n--- Case #\" << cs << \" ---\\n\";",
-          "    cerr << \"\\n--- Logs #\" << cs << \" ---\\n\";",
-          "#endif",
-          "    run();",
-          "  }",
+          "\tios::sync_with_stdio(0);",
+          "\tcin.tie(nullptr);",
+          "\t",
           "}"
         }),
       }),
       snippet("db", {
         text({
-          "#ifdef LOCAL",
+          "// #undef DEBUG",
+          "",
+          "#ifdef DEBUG",
           "#include \"algo/debug\"",
           "#else",
           "#define dbg(...)",
@@ -56,6 +44,8 @@ return {
         }),
       }),
     })
+
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     local cmp = require("cmp")
     cmp.setup({
