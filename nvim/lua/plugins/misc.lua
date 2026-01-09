@@ -46,17 +46,5 @@ return {
   {
     "numToStr/Comment.nvim",
     name = "comment",
-    config = function()
-      require("Comment").setup({
-        toggler = {
-          line = "<leader>/",
-          block = "<leader>\\",
-        },
-        opleader = {
-          line = "<leader>/",
-          block = "<leader>\\",
-        },
-      })
-    end
   }
 }

@@ -8,6 +8,8 @@ vim.opt.termguicolors = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+vim.opt.scrolloff = 10
+
 vim.opt.signcolumn = "no"
 
 vim.opt.laststatus = 0

@@ -1,45 +1,35 @@
-go() {
-  z ~/Desktop/cp
-  cp algo/template a.cpp
-  nv a.cpp
+in() {
+  cat > "input"
 }
 
-in() {
-  if [ -d "algo" ]; then
-    cat > "algo/in"
-  fi
+mo() {
+  wl-copy < "a.cpp"
 }
 
 build() {
-  local bin="algo/main"
-  local sources=("$@")
+  local bin="bin"
+  local rebuild=0
 
-  local rebuild=false
-  if [ ! -f "$bin" ]; then
-    rebuild=true
-  else
-    for src in "${sources[@]}"; do
-      if [ "$src" -nt "$bin" ]; then
-        rebuild=true
-        break
-      fi
-    done
-  fi
-  if $rebuild; then
-    mkdir -p "$(dirname "$bin")"
-    g++ -o "$bin" "${sources[@]}"
+  [[ ! -f $bin ]] && rebuild=1
+
+  for src in "$@"; do
+    [[ $src -nt $bin ]] && { rebuild=1; break; }
+  done
+
+  if (( rebuild )); then
+    g++ -o "$bin" "$@"
   fi
 }
 
 run() {
-  local bin="algo/main"
-  local in="/dev/stdin"
+  local bin="bin"
+  local infile="/dev/stdin"
 
-  if [ "$1" = "-" ]; then
-    in="algo/in"
+  if [[ $1 == "-" ]]; then
+    infile="input"
     shift
   fi
 
   build "$@"
-  ./"$bin" < "$in"
+  ./"$bin" < "$infile"
 }

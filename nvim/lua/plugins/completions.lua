@@ -3,16 +3,14 @@ return {
   name = "cmp",
   dependencies = {
     { "hrsh7th/cmp-nvim-lsp",         name = "cmp-lsp" },
+    { "onsails/lspkind.nvim",         name = "lspkind" },
     { "L3MON4D3/LuaSnip",             name = "luasnip" },
-    { "rafamadriz/friendly-snippets", name = "cmp-path" },
-    { "hrsh7th/cmp-path",             name = "cmp-path" },
     { "windwp/nvim-autopairs",        name = "autopairs" },
     { "saadparwaiz1/cmp_luasnip",     name = "cmp-luasnip" },
     { "rafamadriz/friendly-snippets", name = "friendly-snippets" },
+
   },
   config = function()
-    require("nvim-autopairs").setup({})
-
     local luasnip = require("luasnip")
     local snippet = luasnip.snippet
     local text = luasnip.text_node
@@ -20,39 +18,43 @@ return {
     luasnip.add_snippets("cpp", {
       snippet("cd", {
         text({
-          "#pragma GCC optimize(\"Ofast\")",
-          "#include \"bits/stdc++.h\"",
-          "#define int long long",
+          "#include <bits/stdc++.h>",
           "using namespace std;",
           "",
-          "signed main() {",
-          "\tios::sync_with_stdio(0);",
-          "\tcin.tie(nullptr);",
+          "int main() {",
           "\t",
-          "}"
+          "}",
         }),
       }),
-      snippet("db", {
+      snippet("tc", {
         text({
-          "// #undef DEBUG",
-          "",
-          "#ifdef DEBUG",
-          "#include \"algo/debug\"",
-          "#else",
-          "#define dbg(...)",
-          "#endif",
+          "int t;",
+          "cin >> t;",
+          "while (t--) [] {",
+          "\t",
+          "}();",
         }),
       }),
     })
 
     require("luasnip.loaders.from_vscode").lazy_load()
+    require("nvim-autopairs").setup({})
 
     local cmp = require("cmp")
+    local lspkind = require("lspkind")
+
     cmp.setup({
+      formatting = {
+        fields = { "abbr", "kind" },
+        format = lspkind.cmp_format({
+          mode = "symbol"
+        })
+      },
       window = {
         completion = cmp.config.window.bordered({
           border = "rounded",
           scrollbar = false,
+          max_height = 20,
         }),
         documentation = cmp.config.window.bordered({
           border = "rounded",
